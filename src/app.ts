@@ -1,5 +1,5 @@
-const container: HTMLElement | any = document.getElementById("app")
-const pokemons: number = 100
+const container: HTMLElement | any = document.getElementById("app");
+const pokemons: number = 100;
 
 interface IPokemon {
     id: number;
@@ -10,9 +10,9 @@ interface IPokemon {
 
 const fetchData = (): void => {
     for (let i = 1; i < pokemons; i++) {
-        getPokemon(i)
+        getPokemon(i);
     }
-}
+};
 
 const getPokemon = async (id: number): Promise<void> => {
     const data: Response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -24,21 +24,21 @@ const getPokemon = async (id: number): Promise<void> => {
         name: pokemon.name,
         image: `${pokemon.sprites.front_default}`,
         type: pokemonType
-    }
+    };
 
-    showPokemon(transformedPokemon)
-}
+    showPokemon(transformedPokemon);
+};
 
 const showPokemon = (pokemon: IPokemon): void => {
     let output: string = `
         <div class="card">
             <span class="card--id">#${pokemon.id}</span>
-            <img class="card--image" src="${pokemon.image} alt=${pokemon.name} />
+            <img class="card--image" src=${pokemon.image} alt=${pokemon.name} />
             <h1 class=card--name">${pokemon.name}</h1>
             <span class="card--details">${pokemon.type}</span>
         </div>
-    `
-    container.innerHTML += output
-}
+    `;
+    container.innerHTML += output;
+};
 
-fetchData()
+fetchData();
